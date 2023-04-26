@@ -139,6 +139,9 @@ repositories {
         name = "ModMaven"
         url = "https://modmaven.dev"
     }
+    maven {
+        url "https://cursemaven.com"
+    }
 }
 
 dependencies {
@@ -151,6 +154,15 @@ dependencies {
     compileOnly fg.deobf("mezz.jei:jei-1.19.2-common-api:11.4.0.286") // Adds JEI API as a compile dependency
     compileOnly fg.deobf("mezz.jei:jei-1.19.2-forge-api:11.4.0.286") // Adds JEI API as a compile dependency
     runtimeOnly fg.deobf("mezz.jei:jei-1.19.2-forge:11.4.0.286") // Adds the full JEI mod as a runtime dependency
+    implementation fg.deobf("curse.maven:cofh-core-69162:4385216")
+    implementation fg.deobf("curse.maven:thermal-cultivation-271835:4382369")
+    implementation fg.deobf("curse.maven:thermal-dynamics-227443:4391160")
+    implementation fg.deobf("curse.maven:thermal-expansion-69163:4382371")
+    implementation fg.deobf("curse.maven:thermal-foundation-222880:4382373")
+    implementation fg.deobf("curse.maven:thermal-innovation-291737:4382374")
+    implementation fg.deobf("curse.maven:thermal-integration-626708:4382887")
+    implementation fg.deobf("curse.maven:thermal-locomotion-406959:4382376")
+    
     // implementation fg.deobf("com.tterrag.registrate:Registrate:MC${mc_version}-${registrate_version}") // Adds registrate as a dependency
 
     // Examples using mod jars from ./libs
