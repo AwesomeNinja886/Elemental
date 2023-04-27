@@ -1,5 +1,8 @@
 package com.awesomeninja.elemental;
 
+import com.awesomeninja.elemental.block.ModBlocks;
+import com.awesomeninja.elemental.fluid.ModFluidTypes;
+import com.awesomeninja.elemental.fluid.ModFluids;
 import com.awesomeninja.elemental.item.ModItems;
 import com.mojang.logging.LogUtils;
 import net.minecraft.client.Minecraft;
@@ -53,9 +56,13 @@ public class Elemental
         modEventBus.addListener(this::commonSetup);
 
         // Register the Deferred Register to the mod event bus so blocks get registered
-        //BLOCKS.register(modEventBus);
+        ModBlocks.register(modEventBus);
         // Register the Deferred Register to the mod event bus so items get registered
         ModItems.register(modEventBus);
+        // Register the Deferred Register to the mod event bus so fluids get registered
+        ModFluids.register(modEventBus);
+        // Register the Deferred Register to the mod event bus so fluid types get registered
+        ModFluidTypes.register(modEventBus);
 
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
