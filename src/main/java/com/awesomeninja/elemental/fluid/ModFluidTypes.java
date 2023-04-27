@@ -27,11 +27,11 @@ public class ModFluidTypes {
         FluidType.Properties.create()
             .canConvertToSource(false)
             .canExtinguish(true)
-            .density(3000)
+            .density(6000)
             .temperature(-4223)
             .viscosity(7000)
             .lightLevel(15)
-            .motionScale(0.0023)
+            .motionScale(0.0004)
     );
 
     public static final RegistryObject<FluidType> register(String name, ResourceLocation stillTexture, ResourceLocation flowingTexture, ResourceLocation overlayTexture, int tintColor, Vector3f fogColor, FluidType.Properties properties) {
