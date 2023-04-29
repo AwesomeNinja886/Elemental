@@ -1,0 +1,17 @@
+{
+    "type": "thermal:crystallizer",
+    "ingredients": [
+      {
+        "fluid": "elemental:gelid_cryotheum_fluid",
+        "amount": 100
+      },
+      {
+        "item": "thermal:blizz_powder"
+      }
+    ],
+    "result": [
+      {
+        "item": "elemental:cryotheum_dust"
+      }
+    ]
+  }

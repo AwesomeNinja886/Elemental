@@ -1,0 +1,13 @@
+{
+    "type": "thermal:crucible",
+    "ingredient": {
+      "item": "elemental:cryotheum_dust"
+    },
+    "result": [
+      {
+        "fluid": "elemental:gelid_cryotheum_fluid",
+        "amount": 100
+      }
+    ],
+    "energy": 120000
+  }
