@@ -5,7 +5,11 @@
   "package": "com.awesomeninja.elemental.mixin",
   "refmap": "elemental.mixin.refmap.json",
   "compatibilityLevel": "JAVA_16",
-  "mixins": [],
+  "mixins": [
+    "ILiquidBlockRendererAccessor",
+    "ILiquidBlockRendererInvoker",
+    "ModLiquidBlockRenderer"
+  ],
   "client": [],
   "injectors": {
     "defaultRequire": 1
