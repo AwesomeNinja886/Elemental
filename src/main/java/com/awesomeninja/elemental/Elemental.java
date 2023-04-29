@@ -14,9 +14,11 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.Material;
 import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.common.ForgeMod;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fluids.FluidInteractionRegistry;
 import net.minecraftforge.fml.InterModComms;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
@@ -73,6 +75,13 @@ public class Elemental
         // Some common setup code
         LOGGER.info("HELLO FROM COMMON SETUP");
         LOGGER.info("DIRT BLOCK >> {}", ForgeRegistries.BLOCKS.getKey(Blocks.DIRT));
+
+        FluidInteractionRegistry.addInteraction(ModFluidTypes.GELID_CRYOTHEUM_FLUID_TYPE.get(),
+            new FluidInteractionRegistry.InteractionInformation(ForgeMod.LAVA_TYPE.get(), fluidState -> fluidState.isSource() ? Blocks.OBSIDIAN.defaultBlockState() : Blocks.COBBLESTONE.defaultBlockState())
+        );
+        FluidInteractionRegistry.addInteraction(ModFluidTypes.GELID_CRYOTHEUM_FLUID_TYPE.get(),
+            new FluidInteractionRegistry.InteractionInformation(ForgeMod.WATER_TYPE.get(), Blocks.BLUE_ICE.defaultBlockState())
+        );
     }
 
     // You can use SubscribeEvent and let the Event Bus discover methods to call
