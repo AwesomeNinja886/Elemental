@@ -1,0 +1,13 @@
+{
+  "credit": "Kaupenjoe's Fabric mixins tutorial; also Team COFH's Capable Cauldrons, as I looked at the code for that mod as an example on how to use mixins on Forge",
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.awesomeninja.elemental.mixin",
+  "refmap": "elemental.mixin.refmap.json",
+  "compatibilityLevel": "JAVA_16",
+  "mixins": [],
+  "client": [],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
