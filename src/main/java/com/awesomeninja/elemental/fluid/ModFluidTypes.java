@@ -34,6 +34,31 @@ public class ModFluidTypes {
             .motionScale(0.0004)
     );
 
+    public static final ResourceLocation WATER_STILL = new ResourceLocation("block/water_still");
+    public static final ResourceLocation WATER_FLOWING = new ResourceLocation("block/water_flow");
+    public static final ResourceLocation WATER_OVERLAY = new ResourceLocation("misc/underwater");
+
+    public static final RegistryObject<FluidType> AERO_WATER_FLUID_TYPE = register(
+        "aero_water_fluid",
+        WATER_STILL,
+        WATER_FLOWING,
+        WATER_OVERLAY,
+        0xFFFFFFFF,
+        new Vector3f(255f, 255f, 255f),
+        FluidType.Properties.create()
+            .density(-1000)
+            .temperature(300)
+            .viscosity(1000)
+            .motionScale(0.014)
+            .canSwim(true)
+            .canDrown(true)
+            .fallDistanceModifier(0)
+            .canExtinguish(true)
+            .canConvertToSource(true)
+            .supportsBoating(true)
+
+    );
+
     public static final RegistryObject<FluidType> register(String name, ResourceLocation stillTexture, ResourceLocation flowingTexture, ResourceLocation overlayTexture, int tintColor, Vector3f fogColor, FluidType.Properties properties) {
         return FLUID_TYPES.register(name, () -> new BaseFluidType(stillTexture, flowingTexture, overlayTexture, tintColor, fogColor, properties));
     }

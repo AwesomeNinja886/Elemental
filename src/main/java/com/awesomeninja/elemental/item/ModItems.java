@@ -18,6 +18,7 @@ public class ModItems {
 
     public static final RegistryObject<Item> CRYOTHEUM_DUST = ITEMS.register("cryotheum_dust", () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_BUILDING_BLOCKS).rarity(Rarity.EPIC)));
     public static final RegistryObject<Item> GELID_CRYOTHEUM_BUCKET = ITEMS.register("gelid_cryotheum_bucket", () -> new BucketItem(ModFluids.SOURCE_GELID_CRYOTHEUM, new Item.Properties().tab(CreativeModeTab.TAB_BUILDING_BLOCKS).stacksTo(1).craftRemainder(Items.BUCKET).rarity(Rarity.EPIC)));
+    public static final RegistryObject<Item> AERO_WATER_BUCKET = ITEMS.register("aero_water_bucket", () -> new BucketItem(ModFluids.SOURCE_AERO_WATER, new Item.Properties().tab(CreativeModeTab.TAB_BUILDING_BLOCKS).stacksTo(1).craftRemainder(Items.BUCKET)));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);

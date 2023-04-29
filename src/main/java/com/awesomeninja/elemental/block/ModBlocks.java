@@ -1,6 +1,7 @@
 package com.awesomeninja.elemental.block;
 
 import com.awesomeninja.elemental.Elemental;
+import com.awesomeninja.elemental.block.custom.AeroWaterLiquidBlock;
 import com.awesomeninja.elemental.block.custom.GelidCryotheumLiquidBlock;
 import com.awesomeninja.elemental.fluid.ModFluids;
 
@@ -17,6 +18,7 @@ public class ModBlocks {
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, Elemental.MODID);
 
     public static final RegistryObject<GelidCryotheumLiquidBlock> GELID_CRYOTHEUM_BLOCK = BLOCKS.register("gelid_cryotheum", () -> new GelidCryotheumLiquidBlock(ModFluids.SOURCE_GELID_CRYOTHEUM, BlockBehaviour.Properties.copy(Blocks.WATER).lightLevel((state) -> 15)));
+    public static final RegistryObject<AeroWaterLiquidBlock> AERO_WATER_BLOCK = BLOCKS.register("aero_water", () -> new AeroWaterLiquidBlock(ModFluids.SOURCE_AERO_WATER, BlockBehaviour.Properties.copy(Blocks.WATER)));
     
     public static void register(IEventBus eventBus) {
         BLOCKS.register(eventBus);
