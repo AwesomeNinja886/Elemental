@@ -33,25 +33,25 @@ public abstract class ModLiquidBlockRenderer {
             float f = (float)(i >> 16 & 255) / 255.0F;
             float f1 = (float)(i >> 8 & 255) / 255.0F;
             float f2 = (float)(i & 255) / 255.0F;
-            BlockState blockstate = pLevel.getBlockState(pPos.relative(Direction.DOWN));
-            FluidState fluidstate = blockstate.getFluidState();
-            BlockState blockstate1 = pLevel.getBlockState(pPos.relative(Direction.UP));
-            FluidState fluidstate1 = blockstate1.getFluidState();
-            BlockState blockstate2 = pLevel.getBlockState(pPos.relative(Direction.NORTH));
-            FluidState fluidstate2 = blockstate2.getFluidState();
-            BlockState blockstate3 = pLevel.getBlockState(pPos.relative(Direction.SOUTH));
-            FluidState fluidstate3 = blockstate3.getFluidState();
-            BlockState blockstate4 = pLevel.getBlockState(pPos.relative(Direction.WEST));
-            FluidState fluidstate4 = blockstate4.getFluidState();
-            BlockState blockstate5 = pLevel.getBlockState(pPos.relative(Direction.EAST));
-            FluidState fluidstate5 = blockstate5.getFluidState();
-            boolean flag1 = LiquidBlockRenderer.shouldRenderFace(pLevel, pPos, pFluidState, pBlockState, Direction.UP, fluidstate1) && !ILiquidBlockRendererInvoker.callIsFaceOccludedByNeighbor(pLevel, pPos, Direction.UP, 0.8888889F, blockstate1);
-            boolean flag2 = !ILiquidBlockRendererInvoker.callIsNeighborSameFluid(pFluidState, fluidstate);
-            boolean flag3 = LiquidBlockRenderer.shouldRenderFace(pLevel, pPos, pFluidState, pBlockState, Direction.NORTH, fluidstate2);
-            boolean flag4 = LiquidBlockRenderer.shouldRenderFace(pLevel, pPos, pFluidState, pBlockState, Direction.SOUTH, fluidstate3);
-            boolean flag5 = LiquidBlockRenderer.shouldRenderFace(pLevel, pPos, pFluidState, pBlockState, Direction.WEST, fluidstate4);
-            boolean flag6 = LiquidBlockRenderer.shouldRenderFace(pLevel, pPos, pFluidState, pBlockState, Direction.EAST, fluidstate5);
-            if (flag1 || flag2 || flag6 || flag5 || flag3 || flag4) {
+            BlockState blockStateDown = pLevel.getBlockState(pPos.relative(Direction.DOWN));
+            FluidState fluidStateDown = blockStateDown.getFluidState();
+            BlockState blockStateUp = pLevel.getBlockState(pPos.relative(Direction.UP));
+            FluidState fluidStateUp = blockStateUp.getFluidState();
+            BlockState blockStateNorth = pLevel.getBlockState(pPos.relative(Direction.NORTH));
+            FluidState fluidStateNorth = blockStateNorth.getFluidState();
+            BlockState blockStateSouth = pLevel.getBlockState(pPos.relative(Direction.SOUTH));
+            FluidState fluidStateSouth = blockStateSouth.getFluidState();
+            BlockState blockStateWest = pLevel.getBlockState(pPos.relative(Direction.WEST));
+            FluidState fluidStateWest = blockStateWest.getFluidState();
+            BlockState blockStateEast = pLevel.getBlockState(pPos.relative(Direction.EAST));
+            FluidState fluidStateEast = blockStateEast.getFluidState();
+            boolean fluidUpIsSame = LiquidBlockRenderer.shouldRenderFace(pLevel, pPos, pFluidState, pBlockState, Direction.UP, fluidStateUp) && !ILiquidBlockRendererInvoker.callIsFaceOccludedByNeighbor(pLevel, pPos, Direction.UP, 0.8888889F, blockStateUp);
+            boolean fluidDownIsSame = !ILiquidBlockRendererInvoker.callIsNeighborSameFluid(pFluidState, fluidStateDown);
+            boolean fluidNorthIsSame = LiquidBlockRenderer.shouldRenderFace(pLevel, pPos, pFluidState, pBlockState, Direction.NORTH, fluidStateNorth);
+            boolean fluidSouthIsSame = LiquidBlockRenderer.shouldRenderFace(pLevel, pPos, pFluidState, pBlockState, Direction.SOUTH, fluidStateSouth);
+            boolean fluidWestIsSame = LiquidBlockRenderer.shouldRenderFace(pLevel, pPos, pFluidState, pBlockState, Direction.WEST, fluidStateWest);
+            boolean fluidEastIsSame = LiquidBlockRenderer.shouldRenderFace(pLevel, pPos, pFluidState, pBlockState, Direction.EAST, fluidStateEast);
+            if (fluidUpIsSame || fluidDownIsSame || fluidEastIsSame || fluidWestIsSame || fluidNorthIsSame || fluidSouthIsSame) {
                float f3 = pLevel.getShade(Direction.DOWN, true);
                float f4 = pLevel.getShade(Direction.UP, true);
                float f5 = pLevel.getShade(Direction.NORTH, true);
@@ -68,22 +68,22 @@ public abstract class ModLiquidBlockRenderer {
                   f9 = 1.0F;
                   f10 = 1.0F;
                } else {
-                  float f12 = ((ILiquidBlockRendererInvoker) original_renderer).callGetHeight(pLevel, fluid, pPos.north(), blockstate2, fluidstate2);
-                  float f13 = ((ILiquidBlockRendererInvoker) original_renderer).callGetHeight(pLevel, fluid, pPos.south(), blockstate3, fluidstate3);
-                  float f14 = ((ILiquidBlockRendererInvoker) original_renderer).callGetHeight(pLevel, fluid, pPos.east(), blockstate5, fluidstate5);
-                  float f15 = ((ILiquidBlockRendererInvoker) original_renderer).callGetHeight(pLevel, fluid, pPos.west(), blockstate4, fluidstate4);
+                  float f12 = ((ILiquidBlockRendererInvoker) original_renderer).callGetHeight(pLevel, fluid, pPos.north(), blockStateNorth, fluidStateNorth);
+                  float f13 = ((ILiquidBlockRendererInvoker) original_renderer).callGetHeight(pLevel, fluid, pPos.south(), blockStateSouth, fluidStateSouth);
+                  float f14 = ((ILiquidBlockRendererInvoker) original_renderer).callGetHeight(pLevel, fluid, pPos.east(), blockStateEast, fluidStateEast);
+                  float f15 = ((ILiquidBlockRendererInvoker) original_renderer).callGetHeight(pLevel, fluid, pPos.west(), blockStateWest, fluidStateWest);
                   f7 = ((ILiquidBlockRendererInvoker) original_renderer).callCalculateAverageHeight(pLevel, fluid, f11, f12, f14, pPos.relative(Direction.NORTH).relative(Direction.EAST));
                   f8 = ((ILiquidBlockRendererInvoker) original_renderer).callCalculateAverageHeight(pLevel, fluid, f11, f12, f15, pPos.relative(Direction.NORTH).relative(Direction.WEST));
                   f9 = ((ILiquidBlockRendererInvoker) original_renderer).callCalculateAverageHeight(pLevel, fluid, f11, f13, f14, pPos.relative(Direction.SOUTH).relative(Direction.EAST));
                   f10 = ((ILiquidBlockRendererInvoker) original_renderer).callCalculateAverageHeight(pLevel, fluid, f11, f13, f15, pPos.relative(Direction.SOUTH).relative(Direction.WEST));
                }
       
-               double d1 = (double)(pPos.getX() & 15);
-               double d2 = (double)(pPos.getY() & 15);
-               double d0 = (double)(pPos.getZ() & 15);
+               double dX = (double)(pPos.getX() & 15);
+               double dY = (double)(pPos.getY() & 15);
+               double dZ = (double)(pPos.getZ() & 15);
                float f16 = 0.001F;
-               float f17 = flag2 ? 0.001F : 0.0F;
-               if (flag1 && !ILiquidBlockRendererInvoker.callIsFaceOccludedByNeighbor(pLevel, pPos, Direction.UP, Math.min(Math.min(f8, f10), Math.min(f9, f7)), blockstate1)) {
+               float f17 = fluidDownIsSame ? 0.001F : 0.0F;
+               if (fluidDownIsSame && !ILiquidBlockRendererInvoker.callIsFaceOccludedByNeighbor(pLevel, pPos, Direction.DOWN, Math.min(Math.min(f8, f10), Math.min(f9, f7)), blockStateUp)) {
                   f8 -= 0.001F;
                   f10 -= 0.001F;
                   f9 -= 0.001F;
@@ -141,19 +141,19 @@ public abstract class ModLiquidBlockRenderer {
                   float f31 = f4 * f1;
                   float f32 = f4 * f2;
       
-                  ((ILiquidBlockRendererInvoker) original_renderer).callVertex(pVertexConsumer, d1 + 0.0D, d2 + (double)f8, d0 + 0.0D, f30, f31, f32, alpha, f18, f22, j);
-                  ((ILiquidBlockRendererInvoker) original_renderer).callVertex(pVertexConsumer, d1 + 0.0D, d2 + (double)f10, d0 + 1.0D, f30, f31, f32, alpha, f19, f23, j);
-                  ((ILiquidBlockRendererInvoker) original_renderer).callVertex(pVertexConsumer, d1 + 1.0D, d2 + (double)f9, d0 + 1.0D, f30, f31, f32, alpha, f20, f24, j);
-                  ((ILiquidBlockRendererInvoker) original_renderer).callVertex(pVertexConsumer, d1 + 1.0D, d2 + (double)f7, d0 + 0.0D, f30, f31, f32, alpha, f21, f25, j);
+                  ((ILiquidBlockRendererInvoker) original_renderer).callVertex(pVertexConsumer, dX + 0.0D, dY + (double)f8, dZ + 0.0D, f30, f31, f32, alpha, f18, f22, j);
+                  ((ILiquidBlockRendererInvoker) original_renderer).callVertex(pVertexConsumer, dX + 0.0D, dY + (double)f10, dZ + 1.0D, f30, f31, f32, alpha, f19, f23, j);
+                  ((ILiquidBlockRendererInvoker) original_renderer).callVertex(pVertexConsumer, dX + 1.0D, dY + (double)f9, dZ + 1.0D, f30, f31, f32, alpha, f20, f24, j);
+                  ((ILiquidBlockRendererInvoker) original_renderer).callVertex(pVertexConsumer, dX + 1.0D, dY + (double)f7, dZ + 0.0D, f30, f31, f32, alpha, f21, f25, j);
                   if (pFluidState.shouldRenderBackwardUpFace(pLevel, pPos.above())) {
-                    ((ILiquidBlockRendererInvoker) original_renderer).callVertex(pVertexConsumer, d1 + 0.0D, d2 + (double)f8, d0 + 0.0D, f30, f31, f32, alpha, f18, f22, j);
-                    ((ILiquidBlockRendererInvoker) original_renderer).callVertex(pVertexConsumer, d1 + 1.0D, d2 + (double)f7, d0 + 0.0D, f30, f31, f32, alpha, f21, f25, j);
-                    ((ILiquidBlockRendererInvoker) original_renderer).callVertex(pVertexConsumer, d1 + 1.0D, d2 + (double)f9, d0 + 1.0D, f30, f31, f32, alpha, f20, f24, j);
-                    ((ILiquidBlockRendererInvoker) original_renderer).callVertex(pVertexConsumer, d1 + 0.0D, d2 + (double)f10, d0 + 1.0D, f30, f31, f32, alpha, f19, f23, j);
+                    ((ILiquidBlockRendererInvoker) original_renderer).callVertex(pVertexConsumer, dX + 0.0D, dY + (double)f8, dZ + 0.0D, f30, f31, f32, alpha, f18, f22, j);
+                    ((ILiquidBlockRendererInvoker) original_renderer).callVertex(pVertexConsumer, dX + 1.0D, dY + (double)f7, dZ + 0.0D, f30, f31, f32, alpha, f21, f25, j);
+                    ((ILiquidBlockRendererInvoker) original_renderer).callVertex(pVertexConsumer, dX + 1.0D, dY + (double)f9, dZ + 1.0D, f30, f31, f32, alpha, f20, f24, j);
+                    ((ILiquidBlockRendererInvoker) original_renderer).callVertex(pVertexConsumer, dX + 0.0D, dY + (double)f10, dZ + 1.0D, f30, f31, f32, alpha, f19, f23, j);
                   }
                }
       
-               if (flag2) {
+               if (fluidUpIsSame) {
                   float f40 = atextureatlassprite[0].getU0();
                   float f41 = atextureatlassprite[0].getU1();
                   float f42 = atextureatlassprite[0].getV0();
@@ -163,10 +163,10 @@ public abstract class ModLiquidBlockRenderer {
                   float f47 = f3 * f1;
                   float f48 = f3 * f2;
       
-                  ((ILiquidBlockRendererInvoker) original_renderer).callVertex(pVertexConsumer, d1, d2 + (double)f17, d0 + 1.0D, f46, f47, f48, alpha, f40, f43, l);
-                  ((ILiquidBlockRendererInvoker) original_renderer).callVertex(pVertexConsumer, d1, d2 + (double)f17, d0, f46, f47, f48, alpha, f40, f42, l);
-                  ((ILiquidBlockRendererInvoker) original_renderer).callVertex(pVertexConsumer, d1 + 1.0D, d2 + (double)f17, d0, f46, f47, f48, alpha, f41, f42, l);
-                  ((ILiquidBlockRendererInvoker) original_renderer).callVertex(pVertexConsumer, d1 + 1.0D, d2 + (double)f17, d0 + 1.0D, f46, f47, f48, alpha, f41, f43, l);
+                  ((ILiquidBlockRendererInvoker) original_renderer).callVertex(pVertexConsumer, dX, dY + (double)f17, dZ + 1.0D, f46, f47, f48, alpha, f40, f43, l);
+                  ((ILiquidBlockRendererInvoker) original_renderer).callVertex(pVertexConsumer, dX, dY + (double)f17, dZ, f46, f47, f48, alpha, f40, f42, l);
+                  ((ILiquidBlockRendererInvoker) original_renderer).callVertex(pVertexConsumer, dX + 1.0D, dY + (double)f17, dZ, f46, f47, f48, alpha, f41, f42, l);
+                  ((ILiquidBlockRendererInvoker) original_renderer).callVertex(pVertexConsumer, dX + 1.0D, dY + (double)f17, dZ + 1.0D, f46, f47, f48, alpha, f41, f43, l);
                }
       
                int k = ((ILiquidBlockRendererInvoker) original_renderer).callGetLightColor(pLevel, pPos);
@@ -178,46 +178,46 @@ public abstract class ModLiquidBlockRenderer {
                   double d4;
                   double d5;
                   double d6;
-                  boolean flag7;
+                  boolean neighboringFluidIsSame;
                   switch (direction) {
                      case NORTH:
                         f44 = f8;
                         f45 = f7;
-                        d3 = d1;
-                        d5 = d1 + 1.0D;
-                        d4 = d0 + (double)0.001F;
-                        d6 = d0 + (double)0.001F;
-                        flag7 = flag3;
+                        d3 = dX;
+                        d5 = dX + 1.0D;
+                        d4 = dZ + (double)0.001F;
+                        d6 = dZ + (double)0.001F;
+                        neighboringFluidIsSame = fluidNorthIsSame;
                         break;
                      case SOUTH:
                         f44 = f9;
                         f45 = f10;
-                        d3 = d1 + 1.0D;
-                        d5 = d1;
-                        d4 = d0 + 1.0D - (double)0.001F;
-                        d6 = d0 + 1.0D - (double)0.001F;
-                        flag7 = flag4;
+                        d3 = dX + 1.0D;
+                        d5 = dX;
+                        d4 = dZ + 1.0D - (double)0.001F;
+                        d6 = dZ + 1.0D - (double)0.001F;
+                        neighboringFluidIsSame = fluidSouthIsSame;
                         break;
                      case WEST:
                         f44 = f10;
                         f45 = f8;
-                        d3 = d1 + (double)0.001F;
-                        d5 = d1 + (double)0.001F;
-                        d4 = d0 + 1.0D;
-                        d6 = d0;
-                        flag7 = flag5;
+                        d3 = dX + (double)0.001F;
+                        d5 = dX + (double)0.001F;
+                        d4 = dZ + 1.0D;
+                        d6 = dZ;
+                        neighboringFluidIsSame = fluidWestIsSame;
                         break;
                      default:
                         f44 = f7;
                         f45 = f9;
-                        d3 = d1 + 1.0D - (double)0.001F;
-                        d5 = d1 + 1.0D - (double)0.001F;
-                        d4 = d0;
-                        d6 = d0 + 1.0D;
-                        flag7 = flag6;
+                        d3 = dX + 1.0D - (double)0.001F;
+                        d5 = dX + 1.0D - (double)0.001F;
+                        d4 = dZ;
+                        d6 = dZ + 1.0D;
+                        neighboringFluidIsSame = fluidEastIsSame;
                   }
       
-                  if (flag7 && !ILiquidBlockRendererInvoker.callIsFaceOccludedByNeighbor(pLevel, pPos, direction, Math.max(f44, f45), pLevel.getBlockState(pPos.relative(direction)))) {
+                  if (neighboringFluidIsSame && !ILiquidBlockRendererInvoker.callIsFaceOccludedByNeighbor(pLevel, pPos, direction, Math.max(f44, f45), pLevel.getBlockState(pPos.relative(direction)))) {
                      BlockPos blockpos = pPos.relative(direction);
                      TextureAtlasSprite textureatlassprite2 = atextureatlassprite[1];
                      if (atextureatlassprite[2] != null) {
@@ -236,15 +236,15 @@ public abstract class ModLiquidBlockRenderer {
                      float f38 = f4 * f36 * f1;
                      float f39 = f4 * f36 * f2;
       
-                     ((ILiquidBlockRendererInvoker) original_renderer).callVertex(pVertexConsumer, d3, d2 + (double)f44, d4, f37, f38, f39, alpha, f54, f33, k);
-                     ((ILiquidBlockRendererInvoker) original_renderer).callVertex(pVertexConsumer, d5, d2 + (double)f45, d6, f37, f38, f39, alpha, f55, f34, k);
-                     ((ILiquidBlockRendererInvoker) original_renderer).callVertex(pVertexConsumer, d5, d2 + (double)f17, d6, f37, f38, f39, alpha, f55, f35, k);
-                     ((ILiquidBlockRendererInvoker) original_renderer).callVertex(pVertexConsumer, d3, d2 + (double)f17, d4, f37, f38, f39, alpha, f54, f35, k);
+                     ((ILiquidBlockRendererInvoker) original_renderer).callVertex(pVertexConsumer, d3, dY + (double)f44, d4, f37, f38, f39, alpha, f54, f33, k);
+                     ((ILiquidBlockRendererInvoker) original_renderer).callVertex(pVertexConsumer, d5, dY + (double)f45, d6, f37, f38, f39, alpha, f55, f34, k);
+                     ((ILiquidBlockRendererInvoker) original_renderer).callVertex(pVertexConsumer, d5, dY + (double)f17, d6, f37, f38, f39, alpha, f55, f35, k);
+                     ((ILiquidBlockRendererInvoker) original_renderer).callVertex(pVertexConsumer, d3, dY + (double)f17, d4, f37, f38, f39, alpha, f54, f35, k);
                      if (textureatlassprite2 != ((ILiquidBlockRendererAccessor) original_renderer).getWaterOverlay()) {
-                        ((ILiquidBlockRendererInvoker) original_renderer).callVertex(pVertexConsumer, d3, d2 + (double)f17, d4, f37, f38, f39, alpha, f54, f35, k);
-                        ((ILiquidBlockRendererInvoker) original_renderer).callVertex(pVertexConsumer, d5, d2 + (double)f17, d6, f37, f38, f39, alpha, f55, f35, k);
-                        ((ILiquidBlockRendererInvoker) original_renderer).callVertex(pVertexConsumer, d5, d2 + (double)f45, d6, f37, f38, f39, alpha, f55, f34, k);
-                        ((ILiquidBlockRendererInvoker) original_renderer).callVertex(pVertexConsumer, d3, d2 + (double)f44, d4, f37, f38, f39, alpha, f54, f33, k);
+                        ((ILiquidBlockRendererInvoker) original_renderer).callVertex(pVertexConsumer, d3, dY + (double)f17, d4, f37, f38, f39, alpha, f54, f35, k);
+                        ((ILiquidBlockRendererInvoker) original_renderer).callVertex(pVertexConsumer, d5, dY + (double)f17, d6, f37, f38, f39, alpha, f55, f35, k);
+                        ((ILiquidBlockRendererInvoker) original_renderer).callVertex(pVertexConsumer, d5, dY + (double)f45, d6, f37, f38, f39, alpha, f55, f34, k);
+                        ((ILiquidBlockRendererInvoker) original_renderer).callVertex(pVertexConsumer, d3, dY + (double)f44, d4, f37, f38, f39, alpha, f54, f33, k);
                      }
                   }
                }
